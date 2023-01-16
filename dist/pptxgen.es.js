@@ -1,4 +1,4 @@
-/* PptxGenJS 3.12.0-beta @ 2023-01-16T15:25:15.012Z */
+/* PptxGenJS 3.12.0-beta @ 2023-01-16T15:43:27.153Z */
 import JSZip from 'jszip';
 
 /******************************************************************************
@@ -4888,7 +4888,12 @@ function createExcelWorksheet(chartObject, zip) {
                                                 }
                                                 console.log("<c r=\"".concat(getExcelColName(data[0].labels.length - idx2)).concat(idx + 2, "\" ").concat(format, ">"));
                                                 strSheetXml_1 += "<c r=\"".concat(getExcelColName(data[0].labels.length - idx2)).concat(idx + 2, "\" ").concat(format, ">");
-                                                strSheetXml_1 += "<v>".concat(data.length + idx + 1, "</v>");
+                                                if (!isNaN(Date.parse(_cat))) {
+                                                    strSheetXml_1 += "<v>".concat(_cat, "</v>");
+                                                }
+                                                else {
+                                                    strSheetXml_1 += "<v>".concat(data.length + idx + 1, "</v>");
+                                                }
                                                 strSheetXml_1 += '</c>';
                                             }
                                             for (var idy = 0; idy < data.length; idy++) {

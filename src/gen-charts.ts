@@ -379,7 +379,11 @@ export async function createExcelWorksheet (chartObject: ISlideRelChart, zip: JS
 							}
 							console.log(`<c r="${getExcelColName(data[0].labels.length - idx2)}${idx + 2}" ${format}>`)
 							strSheetXml += `<c r="${getExcelColName(data[0].labels.length - idx2)}${idx + 2}" ${format}>`
-							strSheetXml += `<v>${data.length + idx + 1}</v>`
+							if (!isNaN(Date.parse(_cat))) {
+								strSheetXml += `<v>${_cat}</v>`
+							} else {
+								strSheetXml += `<v>${data.length + idx + 1}</v>`
+							}
 							strSheetXml += '</c>'
 						}
 						for (let idy = 0; idy < data.length; idy++) {
