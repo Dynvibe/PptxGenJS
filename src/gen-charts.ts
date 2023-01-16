@@ -373,7 +373,7 @@ export async function createExcelWorksheet (chartObject: ISlideRelChart, zip: JS
 						console.log(idx)
 						for (let idx2 = data[0].labels.length - 1; idx2 >= 0; idx2--) {
 							let format = 't="s"'
-							if (chartObject.opts.catLabelFormatCode === 'yyyy-mm') {
+							if (!isNaN(Date.parse(_cat))) {
 								format = 't="d"'
 							}
 							strSheetXml += `<c r="${getExcelColName(data[0].labels.length - idx2)}${idx + 2}" ${format}>`
