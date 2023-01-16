@@ -1,4 +1,4 @@
-/* PptxGenJS 3.12.0-beta @ 2023-01-16T14:48:52.105Z */
+/* PptxGenJS 3.12.0-beta @ 2023-01-16T15:04:45.526Z */
 import JSZip from 'jszip';
 
 /******************************************************************************
@@ -4882,9 +4882,11 @@ function createExcelWorksheet(chartObject, zip) {
                                             console.log(idx);
                                             for (var idx2 = data[0].labels.length - 1; idx2 >= 0; idx2--) {
                                                 var format = 't="s"';
+                                                console.log(Date.parse(_cat));
                                                 if (!isNaN(Date.parse(_cat))) {
                                                     format = 't="d"';
                                                 }
+                                                console.log("<c r=\"".concat(getExcelColName(data[0].labels.length - idx2)).concat(idx + 2, "\" ").concat(format, ">"));
                                                 strSheetXml_1 += "<c r=\"".concat(getExcelColName(data[0].labels.length - idx2)).concat(idx + 2, "\" ").concat(format, ">");
                                                 strSheetXml_1 += "<v>".concat(data.length + idx + 1, "</v>");
                                                 strSheetXml_1 += '</c>';
