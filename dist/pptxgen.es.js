@@ -1,4 +1,4 @@
-/* PptxGenJS 3.12.0-beta @ 2023-01-16T15:43:27.153Z */
+/* PptxGenJS 3.12.0-beta @ 2023-01-16T15:49:51.491Z */
 import JSZip from 'jszip';
 
 /******************************************************************************
@@ -4878,15 +4878,11 @@ function createExcelWorksheet(chartObject, zip) {
                                         data[0].labels[0].forEach(function (_cat, idx) {
                                             strSheetXml_1 += "<row r=\"".concat(idx + 2, "\" spans=\"1:").concat(data.length + data[0].labels.length, "\">");
                                             // Leading cols are reserved for the label groups
-                                            console.log(_cat);
-                                            console.log(idx);
                                             for (var idx2 = data[0].labels.length - 1; idx2 >= 0; idx2--) {
                                                 var format = 't="s"';
-                                                console.log(Date.parse(_cat));
                                                 if (!isNaN(Date.parse(_cat))) {
                                                     format = 't="d"';
                                                 }
-                                                console.log("<c r=\"".concat(getExcelColName(data[0].labels.length - idx2)).concat(idx + 2, "\" ").concat(format, ">"));
                                                 strSheetXml_1 += "<c r=\"".concat(getExcelColName(data[0].labels.length - idx2)).concat(idx + 2, "\" ").concat(format, ">");
                                                 if (!isNaN(Date.parse(_cat))) {
                                                     strSheetXml_1 += "<v>".concat(_cat, "</v>");
@@ -5012,7 +5008,6 @@ function createExcelWorksheet(chartObject, zip) {
                                     }
                                 }
                                 strSheetXml_1 += '</sheetData>';
-                                console.log(strSheetXml_1);
                                 /* FIXME: support multi-level
                                 if (IS_MULTI_CAT_AXES) {
                                     strSheetXml += '<mergeCells count="3">'

@@ -369,15 +369,12 @@ export async function createExcelWorksheet (chartObject: ISlideRelChart, zip: JS
 					data[0].labels[0].forEach((_cat, idx) => {
 						strSheetXml += `<row r="${idx + 2}" spans="1:${data.length + data[0].labels.length}">`
 						// Leading cols are reserved for the label groups
-						console.log(_cat)
-						console.log(idx)
+
 						for (let idx2 = data[0].labels.length - 1; idx2 >= 0; idx2--) {
 							let format = 't="s"'
-							console.log(Date.parse(_cat))
 							if (!isNaN(Date.parse(_cat))) {
 								format = 't="d"'
 							}
-							console.log(`<c r="${getExcelColName(data[0].labels.length - idx2)}${idx + 2}" ${format}>`)
 							strSheetXml += `<c r="${getExcelColName(data[0].labels.length - idx2)}${idx + 2}" ${format}>`
 							if (!isNaN(Date.parse(_cat))) {
 								strSheetXml += `<v>${_cat}</v>`
@@ -503,7 +500,6 @@ export async function createExcelWorksheet (chartObject: ISlideRelChart, zip: JS
 				}
 			}
 			strSheetXml += '</sheetData>'
-			console.log(strSheetXml)
 
 			/* FIXME: support multi-level
             if (IS_MULTI_CAT_AXES) {
