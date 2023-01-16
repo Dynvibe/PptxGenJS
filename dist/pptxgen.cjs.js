@@ -1,4 +1,4 @@
-/* PptxGenJS 3.12.0-beta @ 2023-01-16T15:04:45.517Z */
+/* PptxGenJS 3.12.0-beta @ 2023-01-16T15:25:15.004Z */
 'use strict';
 
 var JSZip = require('jszip');
@@ -5013,6 +5013,7 @@ function createExcelWorksheet(chartObject, zip) {
                                     }
                                 }
                                 strSheetXml_1 += '</sheetData>';
+                                console.log(strSheetXml_1);
                                 /* FIXME: support multi-level
                                 if (IS_MULTI_CAT_AXES) {
                                     strSheetXml += '<mergeCells count="3">'

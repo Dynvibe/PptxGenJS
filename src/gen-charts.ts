@@ -499,6 +499,7 @@ export async function createExcelWorksheet (chartObject: ISlideRelChart, zip: JS
 				}
 			}
 			strSheetXml += '</sheetData>'
+			console.log(strSheetXml)
 
 			/* FIXME: support multi-level
             if (IS_MULTI_CAT_AXES) {
