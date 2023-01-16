@@ -369,8 +369,14 @@ export async function createExcelWorksheet (chartObject: ISlideRelChart, zip: JS
 					data[0].labels[0].forEach((_cat, idx) => {
 						strSheetXml += `<row r="${idx + 2}" spans="1:${data.length + data[0].labels.length}">`
 						// Leading cols are reserved for the label groups
+						console.log(_cat)
+						console.log(idx)
 						for (let idx2 = data[0].labels.length - 1; idx2 >= 0; idx2--) {
-							strSheetXml += `<c r="${getExcelColName(data[0].labels.length - idx2)}${idx + 2}" t="s">`
+							let format = 't="s"'
+							if (chartObject.opts.catLabelFormatCode === 'yyyy-mm') {
+								format = 't="d"'
+							}
+							strSheetXml += `<c r="${getExcelColName(data[0].labels.length - idx2)}${idx + 2}" ${format}>`
 							strSheetXml += `<v>${data.length + idx + 1}</v>`
 							strSheetXml += '</c>'
 						}
