@@ -1,4 +1,4 @@
-/* PptxGenJS 3.12.0-beta @ 2023-01-16T15:49:51.491Z */
+/* PptxGenJS 3.12.0-beta @ 2023-02-02T16:01:41.273Z */
 import JSZip from 'jszip';
 
 /******************************************************************************
@@ -4879,18 +4879,16 @@ function createExcelWorksheet(chartObject, zip) {
                                             strSheetXml_1 += "<row r=\"".concat(idx + 2, "\" spans=\"1:").concat(data.length + data[0].labels.length, "\">");
                                             // Leading cols are reserved for the label groups
                                             for (var idx2 = data[0].labels.length - 1; idx2 >= 0; idx2--) {
-                                                var format = 't="s"';
-                                                if (!isNaN(Date.parse(_cat))) {
-                                                    format = 't="d"';
-                                                }
-                                                strSheetXml_1 += "<c r=\"".concat(getExcelColName(data[0].labels.length - idx2)).concat(idx + 2, "\" ").concat(format, ">");
-                                                if (!isNaN(Date.parse(_cat))) {
+                                                if (chartObject.opts.catLabelFormatCode === "yyyy-mm" || chartObject.opts.catLabelFormatCode === "yyyy-mm-dd") {
+                                                    strSheetXml_1 += "<c r=\"".concat(getExcelColName(data[0].labels.length - idx2)).concat(idx + 2, "\">");
                                                     strSheetXml_1 += "<v>".concat(_cat, "</v>");
+                                                    strSheetXml_1 += '</c>';
                                                 }
                                                 else {
+                                                    strSheetXml_1 += "<c r=\"".concat(getExcelColName(data[0].labels.length - idx2)).concat(idx + 2, "\" t=\"s\">");
                                                     strSheetXml_1 += "<v>".concat(data.length + idx + 1, "</v>");
+                                                    strSheetXml_1 += '</c>';
                                                 }
-                                                strSheetXml_1 += '</c>';
                                             }
                                             for (var idy = 0; idy < data.length; idy++) {
                                                 strSheetXml_1 += "<c r=\"".concat(getExcelColName(data[0].labels.length + idy + 1)).concat(idx + 2, "\"><v>").concat(data[idy].values[idx] || '', "</v></c>");
