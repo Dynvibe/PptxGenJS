@@ -371,17 +371,17 @@ export async function createExcelWorksheet (chartObject: ISlideRelChart, zip: JS
 						// Leading cols are reserved for the label groups
 
 						for (let idx2 = data[0].labels.length - 1; idx2 >= 0; idx2--) {
-							let format = 't="s"'
-							if (!isNaN(Date.parse(_cat))) {
-								format = 't="d"'
-							}
-							strSheetXml += `<c r="${getExcelColName(data[0].labels.length - idx2)}${idx + 2}" ${format}>`
-							if (!isNaN(Date.parse(_cat))) {
+
+							if (chartObject.opts.catLabelFormatCode === "yyyy-mm" || chartObject.opts.catLabelFormatCode === "yyyy-mm-dd") {
+								
+								strSheetXml += `<c r="${getExcelColName(data[0].labels.length - idx2)}${idx + 2}">`;								
 								strSheetXml += `<v>${_cat}</v>`
-							} else {
+								strSheetXml += '</c>'
+							   } else {
+								strSheetXml += `<c r="${getExcelColName(data[0].labels.length - idx2)}${idx + 2}" t="s">`
 								strSheetXml += `<v>${data.length + idx + 1}</v>`
-							}
-							strSheetXml += '</c>'
+                            	strSheetXml += '</c>'
+							   }
 						}
 						for (let idy = 0; idy < data.length; idy++) {
 							strSheetXml += `<c r="${getExcelColName(data[0].labels.length + idy + 1)}${idx + 2}"><v>${data[idy].values[idx] || ''}</v></c>`
